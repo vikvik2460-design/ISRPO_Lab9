@@ -18,9 +18,17 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: List files
+        run: ls -la
       - name: Build
-        run: javac Main.java
+        run: javac Calculator.java
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=vikvik2460-design_ISRPO_Lab9
+            -Dsonar.organization=vikvik2460-design
+            -Dsonar.sources=.
+            -Dsonar.java.binaries=.
